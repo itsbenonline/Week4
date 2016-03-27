@@ -1,0 +1,31 @@
+final int GRID_SIZE = 10;
+final float GRID_PADDING = 50;
+
+void setup() {
+  size(500, 500);
+  mouseX = mouseY = 250;
+}
+
+float gridToCoordinates(int input) {
+  return GRID_PADDING+input*(650 - 2*GRID_PADDING)/(GRID_SIZE-1);
+}
+
+void draw() {
+  background(0);
+
+  noStroke();
+  fill(255);
+  for (int i = 0; i < GRID_SIZE; ++i) {
+    for (int j = 0; j < GRID_SIZE; ++j) {
+      float distance = sqrt(pow(mouseX-gridToCoordinates(i), 2) + pow(mouseY-gridToCoordinates(j), 2));
+      float ellipseSize = min(100, 1000.0/distance);
+      ellipse(gridToCoordinates(i), gridToCoordinates(j), ellipseSize, ellipseSize);
+    }
+  }
+  
+}
+//Change first call to ellipse.. nope
+//Circle too big at 1000? 800 maybe?
+// Circles hit the other
+//Padding changed to 600 tryed to fix collitions 
+// Padding change made it better but still touched.. to changed to 700 and WAHBAM!
