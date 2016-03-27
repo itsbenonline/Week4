@@ -1,0 +1,56 @@
+float[] values;
+int index;
+int count = 0;
+boolean counted = false;
+
+void setup() {
+  size(600, 250);
+  background(0);
+
+  values = new float[width/3];
+  index = 0;
+}
+//Yeeeee
+float maybeRandomHeight() {
+  if (random(10) < 1) {
+    return random(height/3, 2*height/3);
+  } else {
+    return 0;
+  }
+}
+
+void draw() {
+  background(255);
+  if (millis() >= 10000 && counted == false) {
+    println(count);
+    counted = true;
+  }
+  values[index] = maybeRandomHeight();
+  index = index + 1;
+  if (index >= values.length) {
+    index = 0;
+  count++;
+  println("reset");
+}
+//Annoying...
+
+  for (int i = 0; i < values.length; ++i) {
+    int realIndex = index + i;
+    if (realIndex >= values.length) {
+      realIndex -= values.length;
+    }
+    line(i*3, height-values[realIndex], i*3, height);
+  }
+  //had help here...
+}
+//Realindex max = 199
+// The lowest possible value is 0
+// Lowest value is 0
+// Code reset two times
+
+
+//Time set to 10. 10000 millisecs  millis function... HANDY!
+// Boolean count to run only on true or false
+// False 10secs, ent time then after is true...dont caluculate that after &&
+//We then have to add a counter for how many times the code resets to 0 and the code then prints reset twice because thats how many times the lines resets back to 0
+// count when code resets to 0... prints reset twise..takes two times to reset line to 0
